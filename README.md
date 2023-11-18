@@ -26,20 +26,29 @@ In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The
 - Generated a dataset.JSON file as required by the nnUNetv2 framework. Set the labels to 0 for background and 1 for fracture, and set channel names (normalization method) to be rescale_to_0_1 as it's a common practice when working with X-ray images.
 (Find in [Dataset.JSON](datasetJSON.ipynb))
 
-### Training The Model:
-- Segmentation with nnUNetv2: A segmentation model is trained using the nnUNetv2 framework to identify and segment fractures within X-ray images. This model produces segmented masks for each image.
-Classification with PyTorch ResNet18: The segmented data is utilized to train a PyTorch ResNet18 model for binary classification. The objective is to classify images into fractured and non-fractured categories based on the segmented information.
+### Training Segmentation Model:
+- Setup the environment and installed nnUNetv2 correctly, initialized environment variables, and ran the dataset integrity command to ensure processed data is a good fit for nnUNet.
+- Due to training the nnUNetv2 framework for 5 folds cross validation being a very computationally intensive task to be done on the free version of Google Colab, I switched between two accounts and could only run training for about 50 epochs for the first fold, and made sure it is working correctly and prepared the notebook to be used for training the rest of the folds. Note that number of epochs here is hardcoded and can only be changed using Colab's Terminal that's also only available in the pro version, so I wasn't able to reduce the number of epochs for each fold and complete training. (Find in [nnUNet_Training](nnUNet_Training.ipynb))
+
+### Segmentation Model Inference:
+- 
 
 ### Classification:
-- Balanced Class Distribution, when you want the model to have a balanced sensitivity to all classes. the consequences of false positives or false negatives
+- Created a cutome version of original dataset ([See Here](ResNetPreprocessing.ipynb)) to ensure balanced class distribution and keep the model equally sensitive to all classes, as in this case we prioritize the consequences of false negatives. Also, approximately followed the same split as dataset creators(80:12:6).
+- Used Pytorch framework to build a simple ResNet-18 binary classification model, used data augmentation techniques and learning rate scheduler to ensure best performance, and finally trained the model for 50 epochs ([See Here](MyResNet18.ipynb)).
+- Plotted training and validation loss and accuracy metrics at the end of training for a better understanding of how the model is performing to help us do the correct hyperparameter tuning and figure out what needs improvement.
+- Ran the model on test data and calculated overall model performance
+- Saved the model and its weights for later use. (Find in [models](https://drive.google.com/drive/folders/1au_VcDwEMy183qL6zGQc2KuBve-Cwzp1?usp=sharing) folder)
 
 ## Installation and Usage
 
 At first, please add a shortcut of this Google Drive [folder](https://drive.google.com/drive/folders/1wmULTo-87FWcIvIN-YeSgEyH1838fymj?usp=sharing) to your drive, as it has both the original and the preprocessed versions of dataset ready for the model, so there will be no need for you to run the preprocessing steps again.
-Second, open the [training](nnUNet_Training.ipynb) notebook in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
+Second, open the training [notebook](nnUNet_Training.ipynb) in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
 
 ## Enhancements and Future Work
 
 I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done that would increase accuracy and performance such as using the Pro+ version of Google Colab to utilize high RAM and several GPU's to train the different data folds in parallel as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for a longer time making more epoches.
 
-Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance. Also we can consider using more complex ResNet architectures than the ResNet-18.
+Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance. Also we can consider using more complex ResNet architectures than the ResNet-18 and running more epochs.
+
+And of course, the main goal of this project, using inference data of nnUNetv2 segmentation to train the classifier by only changing the paths to the data in the ResNet notebook and running again.

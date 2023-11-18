@@ -13,7 +13,7 @@ In this project I used the FracAtlas dataset, a collection of fractured and non-
 ## Summary of My Work
 
 ### Gathering Data and Environment Setup:
-- Downloading the FracAtlas dataset, adding it to my Google Drive, carefully reading the ([article](https://www.nature.com/articles/s41597-023-02432-4)) published by data creators and performing exploratory data analysis to get to understand the data.
+- Downloading the FracAtlas dataset, adding it to my Google Drive, carefully reading the [article](https://www.nature.com/articles/s41597-023-02432-4) published by data creators and performing exploratory data analysis to get to understand the data.
 - Following the nnUnet repository's instructions on how to setup the environment for nnUnet and correctly install required packages.
 
 ### The trickiest part was Data Preprocessing and Conversion into the required folder structure to fit the nnUNetv2 segmentation framework, and I did the following:
@@ -32,7 +32,7 @@ Classification with PyTorch ResNet18: The segmented data is utilized to train a 
 
 ## Installation and Usage
 
-At first, please add a shortcut of this Google Drive ([folder](https://drive.google.com/drive/folders/1wmULTo-87FWcIvIN-YeSgEyH1838fymj?usp=sharing)) to your drive, as it has both the original and the preprocessed versions of dataset ready for the model, so there will be no need for you to run the preprocessing steps again.
+At first, please add a shortcut of this Google Drive [folder](https://drive.google.com/drive/folders/1wmULTo-87FWcIvIN-YeSgEyH1838fymj?usp=sharing) to your drive, as it has both the original and the preprocessed versions of dataset ready for the model, so there will be no need for you to run the preprocessing steps again.
 Second, open the [notebook](data/your_file.txt) notebook in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
 
 ## Enhancements and Future Work

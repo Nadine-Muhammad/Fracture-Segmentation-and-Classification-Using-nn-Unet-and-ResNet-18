@@ -33,10 +33,10 @@ Classification with PyTorch ResNet18: The segmented data is utilized to train a 
 ## Installation and Usage
 
 At first, please add a shortcut of this Google Drive [folder](https://drive.google.com/drive/folders/1wmULTo-87FWcIvIN-YeSgEyH1838fymj?usp=sharing) to your drive, as it has both the original and the preprocessed versions of dataset ready for the model, so there will be no need for you to run the preprocessing steps again.
-Second, open the [notebook](data/your_file.txt) notebook in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
+Second, open the [training](nnUNet_Training.ipynb) notebook in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
 
 ## Enhancements and Future Work
 
-I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done that would increase accuracy and performance such as using the Pro+ version of Google Colab to utilize several GPU's to train the different data folds as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for a longer time making more epoches.
+I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done that would increase accuracy and performance such as using the Pro+ version of Google Colab to utilize high RAM and several GPU's to train the different data folds in parallel as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for a longer time making more epoches.
 
 Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance.

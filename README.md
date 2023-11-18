@@ -23,12 +23,15 @@ In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The
 - Loaded training images into their folder and applied the same processing as label images, as images and their labels need to have the same spatial dimensions during both training and inference. Also renamed them to expected name format.
 - Splitted training and testing data a 80:20 split resulting in 573 training images and 144 test images, and moved all instances to their right folders.
 (Find in [Data Preprocessing](Data_Preprocessing.ipynb))
-- Generated a dataset.JSON file as required by the nnUNetv2 framework.
+- Generated a dataset.JSON file as required by the nnUNetv2 framework. Set the labels to 0 for background and 1 for fracture, and set channel names (normalization method) to be rescale_to_0_1 as it's a common practice when working with X-ray images.
 (Find in [Dataset.JSON](datasetJSON.ipynb))
 
 ### Training The Model:
 - Segmentation with nnUNetv2: A segmentation model is trained using the nnUNetv2 framework to identify and segment fractures within X-ray images. This model produces segmented masks for each image.
 Classification with PyTorch ResNet18: The segmented data is utilized to train a PyTorch ResNet18 model for binary classification. The objective is to classify images into fractured and non-fractured categories based on the segmented information.
+
+### Classification:
+- Balanced Class Distribution, when you want the model to have a balanced sensitivity to all classes. the consequences of false positives or false negatives
 
 ## Installation and Usage
 
@@ -39,4 +42,4 @@ Second, open the [training](nnUNet_Training.ipynb) notebook in Google Colab. Mak
 
 I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done that would increase accuracy and performance such as using the Pro+ version of Google Colab to utilize high RAM and several GPU's to train the different data folds in parallel as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for a longer time making more epoches.
 
-Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance.
+Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance. Also we can consider using more complex ResNet architectures than the ResNet-18.

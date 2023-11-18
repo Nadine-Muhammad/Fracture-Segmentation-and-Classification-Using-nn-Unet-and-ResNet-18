@@ -28,10 +28,10 @@ In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The
 
 ### Training Segmentation Model:
 - Setup the environment and installed nnUNetv2 correctly, initialized environment variables, and ran the dataset integrity command to ensure processed data is a good fit for nnUNet.
-- Due to training the nnUNetv2 framework for 5 folds cross validation being a very computationally intensive task to be done on the free version of Google Colab, I switched between two accounts and could only run training for about 50 epochs for the first fold, and made sure it is working correctly and prepared the notebook to be used for training the rest of the folds. Note that number of epochs here is hardcoded and can only be changed using Colab's Terminal that's also only available in the pro version, so I wasn't able to reduce the number of epochs for each fold and complete training. (Find in [nnUNet_Training](nnUNet_Training.ipynb))
+- Due to training the nnUNetv2 framework for 5 folds cross validation being a very computationally intensive task to be done on the free version of Google Colab, I switched between two accounts and could only run training for about 50 epochs for the first fold, made sure it was working correctly, prepared the notebook to be used for training the rest of the folds, and progress was saved in nnUNet different folders. Note that number of epochs here is hardcoded and can only be changed using Colab's Terminal that's also only available in the pro version, so I wasn't able to reduce the number of epochs for each fold and complete training. (Find in [nnUNet_Training](nnUNet_Training.ipynb))
 
 ### Segmentation Model Inference:
-- 
+- I prepared a notebook for inference with clear instructions to be run after completing training process. (Find in [nnUNet_Inference](nnUNet_Inference.ipynb))
 
 ### Classification:
 - Created a cutome version of original dataset ([See Here](ResNetPreprocessing.ipynb)) to ensure balanced class distribution and keep the model equally sensitive to all classes, as in this case we prioritize the consequences of false negatives. Also, approximately followed the same split as dataset creators(80:12:6).
@@ -43,11 +43,15 @@ In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The
 ## Installation and Usage
 
 At first, please add a shortcut of this Google Drive [folder](https://drive.google.com/drive/folders/1wmULTo-87FWcIvIN-YeSgEyH1838fymj?usp=sharing) to your drive, as it has both the original and the preprocessed versions of dataset ready for the model, so there will be no need for you to run the preprocessing steps again.
-Second, open the training [notebook](nnUNet_Training.ipynb) in Google Colab. Make sure to change runtime type to T4 GPU utilize Colab's GPU, and to mount your drive.
+
+Second, open the [training notebook](nnUNet_Training.ipynb) in Google Colab. Make sure to change runtime type to T4 GPU to utilize Colab's GPU and to mount your drive, and repeat these two steps for all upcoming notebooks. Run all cells as they are. You might just add a little modification if you have access to multiple GPU's for better performance ([See Here](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/how_to_use_nnunet.md#using-multiple-gpus-for-training)).
+
+Next, you should open [inference notebook](nnUNet_Inference.ipynb) and follow its instructions. Finally, you can use resulting inference data to train the ResNet18 model by changing root folders in [this notebook](MyResNet18.ipynb) and training again for best results.
+
 
 ## Enhancements and Future Work
 
-I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done that would increase accuracy and performance such as using the Pro+ version of Google Colab to utilize high RAM and several GPU's to train the different data folds in parallel as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for a longer time making more epoches.
+I definetily couldn't get the best out of this data and these models due to time and resources limitations. Improvements can be done such as using the Pro+ version of Google Colab to utilize high RAM and several GPU's to train the different data folds in parallel as recommended by nnUNet creators and avoid that your session times out. Also allowing the training to run for more epoches until it's done and run the other 4 folds as well. Then, moving further and running the inference notebook to obtaing segmentation results from nnUNet and use it for classification.
 
 Regarding classification, grid search can be applied for better hyperparameter tuning, and generative super resolution techniques can be used as a preprocessing step to enhance training data and therefore achieve better performance. Also we can consider using more complex ResNet architectures than the ResNet-18 and running more epochs.
 

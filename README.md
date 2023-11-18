@@ -8,7 +8,7 @@
 - [Enhancements and Future Work](#enhancements-and-future-work)
 
 ## Overview
-In this project I used the FracAtlas dataset, a collection of fractured and non-fractured X-ray images, to perform both segmentation and classification tasks. The primary goals are to identify and segment fractures within X-ray images using a nnUnetV2 and subsequently classify images as fractured or non-fractured using a PyTorch ResNet18 model.
+In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The_dataset/22363012) dataset, a collection of fractured and non-fractured X-ray images, to perform both segmentation and classification tasks. The primary goals are to identify and segment fractures within X-ray images using [nnUnetV2](https://github.com/MIC-DKFZ/nnUNet) framework and subsequently classifying images as fractured or non-fractured using a PyTorch ResNet18 model.
 
 ## Summary of My Work
 

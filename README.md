@@ -34,7 +34,7 @@ In this project I used the [FracAtlas](https://figshare.com/articles/dataset/The
 - I prepared a notebook for inference with clear instructions to be run after completing training process. (Find in [nnUNet_Inference](nnUNet_Inference.ipynb))
 
 ### Classification:
-- Created a cutome version of original dataset ([See Here](ResNetPreprocessing.ipynb)) to ensure balanced class distribution and keep the model equally sensitive to all classes, as in this case we prioritize the consequences of false negatives. Also, approximately followed the same split as dataset creators(80:12:6).
+- Created a custome version of original dataset ([See Here](ResNetPreprocessing.ipynb)) to ensure balanced class distribution and keep the model equally sensitive to all classes, as in this case we prioritize the consequences of false negatives. Also, approximately followed the same split as dataset creators(80:12:6).
 - Used Pytorch framework to build a simple ResNet-18 binary classification model, used data augmentation techniques and learning rate scheduler to ensure best performance, and finally trained the model for 50 epochs ([See Here](MyResNet18.ipynb)).
 - Plotted training and validation loss and accuracy metrics at the end of training for a better understanding of how the model is performing to help us do the correct hyperparameter tuning and figure out what needs improvement.
 - Ran the model on test data and calculated overall model performance
